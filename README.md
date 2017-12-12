@@ -1,5 +1,4 @@
-# Infra project
-# Stage: Infra-1
+# Infra project (Stage 1)
 
 ## Подключение к внутреннему хосту одной командой через бастион-хост:
 
