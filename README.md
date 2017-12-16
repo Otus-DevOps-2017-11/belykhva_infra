@@ -33,3 +33,19 @@ $ ssh internal
 
 Хост **bastion**, внешн. IP: **35.195.24.17**, внутр. IP: **10.132.0.2**.   
 Хост **someinternalhost**, внутр. IP: **10.132.0.3**
+
+# Infra project (Stage 2)
+
+## Создание инстанса с помощью утилиты gcloud
+Команда запускается из каталога с файлом **startup.sh**
+
+```shell 
+gcloud compute instances create reddit-app3 \
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --metadata-from-file startup-script=startup.sh \
+  --restart-on-failure
+```
