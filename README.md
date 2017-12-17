@@ -37,7 +37,8 @@ $ ssh internal
 # Infra project (Stage 2)
 
 ## Создание инстанса с помощью утилиты gcloud
-Команда запускается из каталога с файлом **startup.sh**
+Команда запускается из каталога с файлом **startup.sh**.  
+Зона назначения была убрана из скрипта намеренно, т.к. значение по-умолчанию берется из настроек gcloud.  
 
 ```shell 
 gcloud compute instances create reddit-app3 \
