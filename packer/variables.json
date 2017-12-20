@@ -1,0 +1,11 @@
+{
+    "project_id": null,
+    "src_img_family": null,
+    "machine_type": "f1-micro",
+    "img_descr": "Just image",
+    "dsk_size": "10",
+    "dsk_type": "pd-standard",
+    "tags": "testvm test app",
+    "network": "default"
+    }
+}

@@ -1,20 +1,21 @@
 {
   "variables": {
     "project_id": null,
-    "src_img_family": null,
+    "src_img_family": "ubuntu-1604-lts",
+    "image_family": "reddit-full",
     "machine_type": "f1-micro",
-    "img_descr": "Just image",
+    "img_descr": "Just image with App",
     "dsk_size": "10",
     "dsk_type": "pd-standard",
-    "tags": "testvm test app",
+    "tags": "testvm",
     "network": "default"
     },
   "builders": [
     {
     "type": "googlecompute",
     "project_id": "{{user `project_id`}}",
-    "image_name": "reddit-base-{{timestamp}}",
-    "image_family": "reddit-base",
+    "image_name": "reddit-full-{{timestamp}}",
+    "image_family": "{{user `image_family`}}",
     "source_image_family": "{{user `src_img_family`}}",
     "zone": "europe-west1-b",
     "ssh_username": "appuser",
@@ -35,6 +36,11 @@
     {
       "type": "shell",
       "script": "scripts/install_mongodb.sh",
+      "execute_command": "sudo {{.Path}}"
+    },
+    {
+      "type": "shell",
+      "script": "files/deploy.sh",
       "execute_command": "sudo {{.Path}}"
     }
   ]
