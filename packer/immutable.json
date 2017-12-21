@@ -39,6 +39,11 @@
       "execute_command": "sudo {{.Path}}"
     },
     {
+      "type": "file",
+      "source": "files/app.service",
+      "destination": "/tmp/app.service"
+    },
+    {
       "type": "shell",
       "script": "files/deploy.sh",
       "execute_command": "sudo {{.Path}}"
