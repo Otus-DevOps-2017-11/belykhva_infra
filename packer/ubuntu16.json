@@ -6,7 +6,7 @@
     "img_descr": "Just image",
     "dsk_size": "10",
     "dsk_type": "pd-standard",
-    "tags": "testvm test app",
+    "tags": "testvm",
     "network": "default"
     },
   "builders": [
