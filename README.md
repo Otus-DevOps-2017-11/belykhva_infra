@@ -50,3 +50,40 @@ gcloud compute instances create reddit-app3 \
   --metadata-from-file startup-script=startup.sh \
   --restart-on-failure
 ```
+
+# Infra project (Stage 3)
+
+## Валидация конфигурации
+
+```shell
+packer validate \
+-var-file=variables.json \
+-var 'project_id=infra-188819' \
+-var 'src_img_family=ubuntu-1604-lts' \
+ubuntu16.json
+```
+
+## Создание образа
+
+```shell
+packer build \
+-var-file=variables.json \
+-var 'project_id=infra-188819' \
+-var 'src_img_family=ubuntu-1604-lts' \
+ubuntu16.json
+```
+
+## Cоздание образа с приложением
+
+```shell
+
+packer build \
+-var 'project_id=infra-188819' \
+immutable.json
+```
+
+## Запуск ВМ с приложением
+
+```shell
+./config-scripts/create-reddit-vm.sh
+```
