@@ -27,3 +27,11 @@ variable zone {
 variable "keys" { 
   default = {} 
 }
+
+variable "app_port" {
+  default = "80"
+}
+
+variable "lb_port" {
+  default = "80"
+}

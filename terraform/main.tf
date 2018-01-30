@@ -112,7 +112,7 @@ resource "google_compute_instance" "app2" {
 ########### ПРАВИЛА ДЛЯ ФОРВАРДИНГА ТРАФИКА ########
 resource "google_compute_global_forwarding_rule" "default" {
   name       = "default-rule"
-  port_range = "80"
+  port_range = "${var.lb_port}"
   ip_protocol = "TCP"
   target     = "${google_compute_target_http_proxy.default.self_link}"
 }
@@ -155,7 +155,7 @@ resource "google_compute_http_health_check" "default" {
   
   timeout_sec        = 1
   check_interval_sec = 1
-  port = "9292"
+  port = "${var.app_port}"
 }
 #---------------------------------------------------#
 
@@ -171,7 +171,7 @@ resource "google_compute_instance_group" "webservers" {
 
   named_port {
     name = "http"
-    port = "9292"
+    port = "${var.app_port}"
   }
 
  zone = "${var.zone}"
@@ -185,7 +185,7 @@ resource "google_compute_firewall" "firewall_puma" {
 
   allow {
     protocol = "tcp"
-    ports    = ["9292"]
+    ports    = ["${var.app_port}"]
   }
 
   source_ranges = ["0.0.0.0/0"]
