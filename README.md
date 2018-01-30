@@ -86,6 +86,7 @@ immutable.json
 
 ```shell
 ./config-scripts/create-reddit-vm.sh
+```
 
 # Terraform project
 
