@@ -23,3 +23,7 @@ variable zone {
   description = "Availability Zone"
   default     = "europe-west1-b"
 }
+
+variable "keys" { 
+  default = {} 
+}
