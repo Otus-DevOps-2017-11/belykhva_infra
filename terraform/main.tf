@@ -6,7 +6,6 @@ provider "google" {
 }
 #------------------------------------------------#
 
-
 #resource "google_compute_project_metadata_item" "ssh_public_key" {
 #  key = "sshKeys"
 #  value = "appuser:${file(pathexpand("~/.ssh/appuser.pub"))}"
@@ -142,13 +141,13 @@ resource "google_compute_backend_service" "default" {
 }
 #---------------------------------------------------#
 
-################### URL MAP ########################
+################### URL MAP #########################
 resource "google_compute_url_map" "default" {
   name            = "url-map"
   description     = "a description"
   default_service = "${google_compute_backend_service.default.self_link}"
 }
-#--------------------------------------------------#
+#---------------------------------------------------#
 
 ############### HEALTH CHECKER ######################
 resource "google_compute_http_health_check" "default" {
@@ -178,7 +177,6 @@ resource "google_compute_instance_group" "webservers" {
  zone = "${var.zone}"
 }
 #---------------------------------------------------#
-
 
 ############### FIREWALL RULES #####################
 resource "google_compute_firewall" "firewall_puma" {
