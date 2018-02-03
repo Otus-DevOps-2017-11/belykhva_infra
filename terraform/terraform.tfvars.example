@@ -1,0 +1,2 @@
+project                 = "project_id"
+gcs_backets             = ["myprod-state-store-bucket", "mystage-state-store-bucket"]
