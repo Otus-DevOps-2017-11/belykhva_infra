@@ -24,7 +24,6 @@
 - развертывание управляемых ВМ из шаблона в рамках группы
 - развертывание инстансов по конфигурируемому счетчику (count) без дублирования кусков кода
 - возможно остались непараметризованные переменные
-```
 
 # Infra project (Stage 3)
 
@@ -79,7 +78,6 @@ gcloud compute instances create reddit-app3 \
   --metadata-from-file startup-script=startup.sh \
   --restart-on-failure
 ```
-
 
 # Infra project (Stage 1)
 
