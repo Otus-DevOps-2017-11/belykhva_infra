@@ -19,7 +19,7 @@
 - Т.к. приложение разбито на узлы пришлось править сервисные файлы, конфигурационные файлы и т.д. подручными провиженерами
 - Инициализация хранилищ GCS делается из корня проекта Terraform, далее уже развёртываются Stage и Prod с хранением State в GCS
 
-# Terraform project
+# Terraform project #1
 
 В проекте описана инфраструктура для развертывания в Google Cloud Platform.
 Выполнены все задания, включая * и **.
@@ -68,7 +68,7 @@ immutable.json
 
 ```shell
 ./config-scripts/create-reddit-vm.sh
-
+```
 
 # Infra project (Stage 2)
 
@@ -122,21 +122,3 @@ $ ssh internal
 
 Хост **bastion**, внешн. IP: **35.195.24.17**, внутр. IP: **10.132.0.2**.   
 Хост **someinternalhost**, внутр. IP: **10.132.0.3**
-
-# Infra project (Stage 2)
-
-## Создание инстанса с помощью утилиты gcloud
-Команда запускается из каталога с файлом **startup.sh**.  
-Зона назначения была убрана из скрипта намеренно, т.к. значение по-умолчанию берется из настроек gcloud.  
-
-```shell 
-gcloud compute instances create reddit-app3 \
-  --boot-disk-size=10GB \
-  --image-family ubuntu-1604-lts \
-  --image-project=ubuntu-os-cloud \
-  --machine-type=g1-small \
-  --tags puma-server \
-  --metadata-from-file startup-script=startup.sh \
-  --restart-on-failure
-```
-

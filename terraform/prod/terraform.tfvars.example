@@ -1,0 +1,40 @@
+# ОБЩИЕ ПАРАМЕТРЫ
+
+# Идентификатор проекта GCP
+project                 = "project_number"
+# Префикс окружения (добавляется к именам всех сущностей GCP)
+infra_prefix            = "prod"
+# Путь к публичному ключу
+public_key_path         = "~/.ssh/appuser.pub"
+# Путь к приватному ключу
+private_key_path        = "~/.ssh/appuser"
+# Путь к публичным ключам для добавления в проект
+keys = {
+  appuser               = "~/.ssh/appuser.pub",
+  appuser1              = "~/.ssh/appuser1.pub",
+  appuser2              = "~/.ssh/appuser2.pub",
+}
+# Базовый образ
+disk_image              = "reddit-base"
+# Диапазон IP-адресов для доступа по SSH к инстансам
+ssh_sources_ranges      = ["0.0.0.0/0"]
+# Порт балансировщика трафика
+lb_port                 = "80"
+
+# ПАРАМЕТРЫ СЕРВЕРОВ ПРИЛОЖЕНИЙ
+
+# Тип инстансов приложений
+app_machine_type        = "g1-small"
+# Порт приложения
+app_port                = "9292"
+# Количество виртуальных машин для приложения
+vm_count                = "2"
+
+# ПАРАМЕТРЫ СЕРВЕРА СУБД
+
+# Тип инстанса СУБД
+db_machine_type         = "g1-small"
+# IP-адрес для запуска сервиса MongoDB
+mongodb_bind            = "0.0.0.0"
+# Порт для запуска сервиса MongoDB
+mongodb_port            = "27017"

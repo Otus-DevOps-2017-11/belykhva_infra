@@ -1,37 +1,14 @@
-variable project {
-  description = "Project ID"
+variable "project" {
+  default               = "infra-188819"
+  description           = "Project ID"
 }
 
-variable region {
-  description = "Region"
-  default     = "europe-west1"
+variable "region" {
+  default               = "europe-west1"
+  description           = "Default Region"
 }
 
-variable public_key_path {
-  description = "Path to the public key used for ssh access"
-}
-
-variable disk_image {
-  description = "Disk image"
-}
-
-variable private_key_path {
-  description = "Private key"
-}
-
-variable zone {
-  description = "Availability Zone"
-  default     = "europe-west1-b"
-}
-
-variable "keys" { 
-  default = {} 
-}
-
-variable "app_port" {
-  default = "80"
-}
-
-variable "lb_port" {
-  default = "80"
+variable "gcs_buckets" {
+  default               = ["myprod-state-store-bucket", "mystage-state-store-bucket"]
+  description           = "Bucket's list"
 }

@@ -1,18 +1,2 @@
-# НАЗВАНИЕ ПРОЕКТА
-project = "your-project-id"
-# ПУТЬ К ПУБЛИЧНОМУ КЛЮЧУ
-public_key_path = "~/.ssh/appuser.pub"
-# ПУТЬ К ПРИВАТНОМУ КЛЮЧУ
-private_key_path = "~/.ssh/appuser"
-# ИСПОЛЬЗУЕМЫЙ ОБРАЗ ДЛЯ СОЗДАНИЯ ИНСТАНСА
-disk_image = "reddit-base"
-# ПОРТ ПРИЛОЖЕНИЯ ДЛЯ НАСТРОЙКИ БАЛАНСИРОВЩИКА (НЕ САМОГО ПРИЛОЖЕНИЯ)
-app_port = "9292"
-# ПОРТ БАЛАНСИРОВЩИКА
-lb_port = "80"
-# МАССИВ ДАННЫХ, ОПИСЫВАЕТ ИМЕНА ПОЛЬЗОВАТЕЛЕЙ И ПУТИ ДО ИМПОРТИРУЕМЫХ В ПРОЕКТ КЛЮЧЕЙ
-keys = {
-  username1 = "~/path/to/public/key",
-  username2 = "~/path/to/public/key",
-  username3 = "~/path/to/public/key",
-}
+project                 = "project_id"
+gcs_backets             = ["myprod-state-store-bucket", "mystage-state-store-bucket"]
