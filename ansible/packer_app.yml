@@ -1,0 +1,15 @@
+---
+- name: Install Ruby
+  hosts: all
+  become: true
+  tasks:
+    - name: Install packages
+      apt:
+        name:
+          - ruby-full
+          - ruby-bundler
+          - build-essential
+          - lynx
+        state: latest
+        update_cache: yes
+

@@ -1,10 +1,10 @@
 {
     "project_id": null,
-    "src_img_family": null,
+    "src_img_family": "ubuntu-1604-lts",
     "machine_type": "f1-micro",
     "img_descr": "Sample description",
-    "dsk_size": "5",
+    "dsk_size": "30",
     "dsk_type": "pd-standard",
-    "tags": "Sample tag",
+    "tags": "SampleTag",
     "network": "default"
 }
