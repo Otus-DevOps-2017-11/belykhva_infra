@@ -34,3 +34,17 @@ resource "google_compute_firewall" "firewall_puma" {
   source_ranges         = ["0.0.0.0/0"]
   target_tags           = ["${var.infra_prefix}-reddit-app"]
 }
+
+resource "google_compute_firewall" "firewall_nginx" {
+  name                  = "${var.infra_prefix}-allow-nginx"
+  network               = "default"
+
+  allow {
+    protocol            = "tcp"
+    ports               = ["80"]
+  }
+
+  source_ranges         = ["0.0.0.0/0"]
+  target_tags           = ["${var.infra_prefix}-reddit-app"]
+}
+
