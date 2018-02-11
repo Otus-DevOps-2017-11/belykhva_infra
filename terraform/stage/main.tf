@@ -4,13 +4,6 @@ provider "google" {
   region                = "${var.region}"
 }
 
-terraform {
-  backend "gcs" {
-    bucket = "mystage-state-store-bucket"
-    region = "europe-west1-b"
-  }
-}
-
 resource "google_storage_bucket" "state-store" {
   name     = "stage-state-store-bucket"
   location = "EU"

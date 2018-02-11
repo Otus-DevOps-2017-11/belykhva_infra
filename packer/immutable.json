@@ -30,22 +30,22 @@
  "provisioners": [
     {
       "type": "shell",
-      "script": "scripts/install_ruby.sh",
+      "script": "packer/scripts/install_ruby.sh",
       "execute_command": "sudo {{.Path}}"
     },
     {
       "type": "shell",
-      "script": "scripts/install_mongodb.sh",
+      "script": "packer/scripts/install_mongodb.sh",
       "execute_command": "sudo {{.Path}}"
     },
     {
       "type": "file",
-      "source": "files/app.service",
+      "source": "packer/files/app.service",
       "destination": "/tmp/app.service"
     },
     {
       "type": "shell",
-      "script": "files/deploy.sh",
+      "script": "packer/files/deploy.sh",
       "execute_command": "sudo {{.Path}}"
     }
   ]
