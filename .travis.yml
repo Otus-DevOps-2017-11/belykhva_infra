@@ -1,0 +1,96 @@
+language: python
+python: "2.7"
+
+branches:
+  only:
+  - master
+  - ansible-3
+
+env:
+  global:
+
+    # software versions
+    - ANSIBLE_VERSION=2.4.3.0
+    - ANSIBLE_LINT_VERSION=3.4.20
+    - PACKER_VERSION=1.2.0
+    - TERRAFORM_VERSION=0.11.3
+
+    # work directories
+    - TEMP_DIR=~/tmp
+    - BIN_DIR=~/bin
+
+before_install:
+
+  # remove and re-create directories
+  - rm -rf ${TEMP_DIR} && rm -rf ${BIN_DIR}
+  - mkdir ${TEMP_DIR} && mkdir ${BIN_DIR}
+
+install:
+ 
+  # install ansible
+  - pip install ansible==${ANSIBLE_VERSION}
+
+  # install ansible-lint
+  - pip install ansible-lint==${ANSIBLE_LINT_VERSION}
+
+  # install packer
+  - wget -P ${TEMP_DIR} https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip
+  - unzip -o ${TEMP_DIR}/packer_${PACKER_VERSION}_linux_amd64.zip -d ${BIN_DIR}
+
+  # install terraform
+  - wget -P ${TEMP_DIR} https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+  - unzip -o ${TEMP_DIR}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d ${BIN_DIR}
+
+  # install tflint
+  - wget -P ${TEMP_DIR} https://github.com/wata727/tflint/releases/download/v0.5.4/tflint_linux_386.zip
+  - unzip -o ${TEMP_DIR}/tflint_linux_386.zip -d ${BIN_DIR}
+
+before_script:
+
+  # create example ssh-keys
+  - touch ~/.ssh/appuser.pub ~/.ssh/appuser ~/.ssh/appuser1.pub ~/.ssh/appuser2.pub
+  # copy variables from examples
+  - cp terraform/stage/terraform.tfvars.example terraform/stage/terraform.tfvars
+  - cp terraform/prod/terraform.tfvars.example terraform/prod/terraform.tfvars
+  # remove backend creators
+  - rm terraform/stage/backend.tf
+  - rm terraform/prod/backend.tf
+
+script:
+
+  # validate ansible
+  - ansible-lint ansible/playbooks/site.yml
+
+  # validate packer templates
+  - ${BIN_DIR}/packer validate -var-file=packer/variables.json.example packer/app.json
+  - ${BIN_DIR}/packer validate -var-file=packer/variables.json.example packer/db.json
+  
+  # validate terraform stage
+  - cd terraform/stage
+  - ${BIN_DIR}/terraform init
+  - ${BIN_DIR}/terraform validate
+  - ${BIN_DIR}/tflint
+  - cd ../../
+
+  # validate terraform prod
+  - cd terraform/prod
+  - ${BIN_DIR}/terraform init
+  - ${BIN_DIR}/terraform validate
+  - ${BIN_DIR}/tflint
+  - cd ../../
+
+after_success:
+
+  - echo 'It is seems ok! Congratulations!'
+
+after_failure:
+  
+  - echo 'You are loooser!'
+
+after_script:
+
+  - rm -rf {TEMP_DIR}
+  - rm -rf {BIN_DIR}
+  - rm -rf terraform/stage/terraform.tfvars
+  - rm -rf terraform/prod/terraform.tfvars
+

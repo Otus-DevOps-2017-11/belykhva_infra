@@ -4,13 +4,6 @@ provider "google" {
   region                = "${var.region}"
 }
 
-terraform {
-  backend "gcs" {
-    bucket = "myprod-state-store-bucket"
-    region = "europe-west1-b"
-  }
-}
-
 data "template_file" "ssh_string_generator" {
   count                 = "${length(var.keys)}"
   template              = "$${user}:$${key}"

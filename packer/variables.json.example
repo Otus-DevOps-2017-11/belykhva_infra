@@ -1,5 +1,5 @@
 {
-    "project_id": null,
+    "project_id": "test-project-id",
     "src_img_family": "ubuntu-1604-lts",
     "machine_type": "f1-micro",
     "img_descr": "Sample description",

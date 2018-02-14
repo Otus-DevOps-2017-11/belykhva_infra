@@ -1,0 +1,10 @@
+[app]
+#appserver1 ansible_host=35.195.73.244
+#appserver2 ansible_host=35.195.12.96
+[db]
+#dbserver ansible_host=104.155.71.118
+
+[app:children]
+tag_prod-reddit-app
+[db:children]
+tag_prod-reddit-db
