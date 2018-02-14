@@ -1,0 +1,11 @@
+[gce]
+gce_service_account_email_address = INSERT_YOUR_DATA
+gce_service_account_pem_file_path = INSERT_YOUR_DATA
+gce_project_id = INSERT_YOUR_DATA
+gce_zone = INSERT_YOUR_DATA
+[inventory]
+inventory_ip_type = external
+[cache]
+cache_path = ~/.ansible/tmp
+cache_max_age = 300
+
