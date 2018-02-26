@@ -1,15 +1,7 @@
----
-- name: Install Ruby
+- name: Install Puma
   hosts: all
   become: true
-  tasks:
-    - name: Install packages
-      apt:
-        name:
-          - ruby-full
-          - ruby-bundler
-          - build-essential
-          - lynx
-        state: latest
-        update_cache: yes
+
+  roles:
+    - app
 
