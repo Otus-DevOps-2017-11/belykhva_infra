@@ -1,5 +1,16 @@
 [![Build Status](https://travis-ci.org/Otus-DevOps-2017-11/belykhva_infra.svg?branch=master)](https://travis-ci.org/Otus-DevOps-2017-11/belykhva_infra)
 
+# Ansible #4
+
+- Налажена работа связки Vagrant, molecule, testinfra
+
+## Задания со *
+
+- В Vagrantfile дописана дополнительная переменная для настройки nginx
+- Роль базы данных вынесена в репозиторий https://github.com/belykhva/ansible4
+- Настроена интеграция с Travis CI
+- Настроены уведомления на канал #vladimir-belykh в Слаке
+
 # Ansible #3
 
 - Отделил мясо от костей: реализовал роли
