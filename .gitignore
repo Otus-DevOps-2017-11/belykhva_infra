@@ -8,8 +8,8 @@ gce.ini
 Infra-1df1cb7701a5.json
 jdauphant.nginx
 # vagrant 
-./vagrant/
-*.log/
+.vagrant/
+*.log
 *.pyc
 .molecule
 .cache
